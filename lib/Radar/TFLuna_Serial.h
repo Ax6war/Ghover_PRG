@@ -2,7 +2,6 @@
 #define TFLUNA_SERIAL_H
 
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 
 
 #define FRAME_SIZE 9

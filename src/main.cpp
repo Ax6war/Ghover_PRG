@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
-#include <Ghover.h>
+#include <Ghover/Ghover.h>
 
-//MotorPins motorPins = {2, 4, 3, 6, 7, 8};
+MotorPins motorPins = {12, 13, 3, 6, 7, 8};
 
 
 
@@ -10,7 +10,7 @@ SoftwareSerial altSerial(2, 3); // RX, TX
 
 Radar radar(11, altSerial); // Assuming servo is connected to pin 9
 
-//Ghover ghover(motorPins, radar);
+Ghover ghover(motorPins, radar);
 
 uint32_t startTime;
 
@@ -26,14 +26,14 @@ void setup() {
 
 void loop() {
     
-    //ghover.setDirection(true); // Move forward
+    ghover.setDirection(true); // Move forward
     radar.update();
     radar.calculateDirection();
     
     
     uint16_t distance = radar.getDistance();
-    uint8_t strength = radar.getStrength();
-    float temperature = radar.getTemperature();
+    //uint8_t strength = radar.getStrength();
+    //float temperature = radar.getTemperature();
     
     if(millis() > startTime + 100) {
         startTime = millis();

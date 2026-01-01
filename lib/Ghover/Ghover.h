@@ -5,6 +5,8 @@
 
 #include "Radar/Radar.h"
 
+#include <Servo.h>
+
 class Ghover {
 private:
     MotorPins motorPins;

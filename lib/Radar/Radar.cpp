@@ -1,9 +1,6 @@
 
 #include "Radar.h"
 
-#include <Arduino.h>
-
-
 
 Servo radarServo;
 
