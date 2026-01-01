@@ -1,7 +1,7 @@
 #ifndef GHOOVER_H
 #define GHOOVER_H
 
-#include "Motor.h"
+#include "Motor/Motor.h"
 
 #include "Radar/Radar.h"
 
