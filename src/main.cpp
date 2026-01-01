@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
-#include <Ghover/Ghover.h>
+#include <Ghover.h>
 
 MotorPins motorPins = {12, 13, 3, 6, 7, 8};
 
