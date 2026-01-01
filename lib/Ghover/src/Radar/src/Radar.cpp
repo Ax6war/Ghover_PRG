@@ -6,11 +6,12 @@ Servo radarServo;
 
 Radar::Radar(int servoPin, Stream& serialPort) : currentDirection(90.0f), radarLuna(TFLuna_Serial(serialPort, 115200)), state(RadarState::IDLE),
     distance(0), strength(0), temperature(0.0f) {
+        this->_servoPin = servoPin;
     
 }
 
 void Radar::begin() {
-    radarServo.attach(11); // Assuming servo is connected to pin 9
+    radarServo.attach(_servoPin); // Assuming servo is connected to pin 9
     radarServo.write(90); // Center the servo
 }
 

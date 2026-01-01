@@ -1,6 +1,6 @@
 #include "Ghover.h"
 
-Ghover::Ghover(MotorPins motorPins, Radar radar) : motor(motorPins), radar(radar) {}
+Ghover::Ghover(MotorPins motorPins, Radar radar, Receiver receiver) : motor(motorPins), radar(radar), receiver(receiver) {}
 
 void Ghover::setSpeed(int speed) {
     motor.setSpeed(speed);
@@ -23,3 +23,11 @@ void Ghover::readRadarData() {
 
 }
 
+
+void Ghover::TransmitData(Data_Package_Rcv &data, Data_Package_Snd &outData) {
+    receiver.receiveData(data, outData);
+}
+
+void Ghover::startReceiver() {
+    receiver.setParameters(true, RF24_1MBPS, RF24_PA_HIGH);
+}

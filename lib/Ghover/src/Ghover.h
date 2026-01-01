@@ -5,6 +5,8 @@
 
 #include "Radar/src/Radar.h"
 
+#include "Radio/src/Receiver.h"
+
 #include <Servo.h>
 
 class Ghover {
@@ -12,13 +14,16 @@ private:
     MotorPins motorPins;
     Motor motor;
     Radar radar;
+    Receiver receiver;
 public:
-    Ghover(MotorPins motorPins, Radar radar);
+    Ghover(MotorPins motorPins, Radar radar, Receiver receiver);
     void setSpeed(int speed);
     void setDirection(bool forward);
     void stop();
     void activateRadar();
     void readRadarData();
+    void startReceiver();
+    void TransmitData(Data_Package_Rcv &data, Data_Package_Snd &outData);
 };
 
 #endif // GHOOVER_H

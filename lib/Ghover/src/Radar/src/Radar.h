@@ -32,6 +32,7 @@ private:
     int16_t distance;
     int16_t strength;
     float temperature;
+    int _servoPin;
     
 };
 
