@@ -52,6 +52,8 @@ void loop() {
         //Serial.print("Distance: ");
     Serial.print(dataPackage_rcv.command[0]);
     Serial.print(",");
+    Serial.print(dataPackage_rcv.timestamp);
+    Serial.print(",");
     Serial.println(dataPackage_rcv.command[1]);
     
     //Serial.print(" cm, Strength: ");
