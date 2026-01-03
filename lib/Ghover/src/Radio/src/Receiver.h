@@ -18,7 +18,6 @@ struct Data_Package_Snd{
 class Receiver{
     public:
         Receiver(uint16_t CE_Pin, uint16_t CS_Pin);   
-        void setPackageSize(int size);
         void begin();
         void setParameters(bool AutoAck,rf24_datarate_e rate, rf24_pa_dbm_e level);
         void receiveData(Data_Package_Rcv &data, Data_Package_Snd &outData);
