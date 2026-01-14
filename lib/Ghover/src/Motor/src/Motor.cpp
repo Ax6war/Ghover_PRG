@@ -3,41 +3,61 @@
 Motor::Motor(MotorPins motorPins) {
   this->IN1_PIN = motorPins.IN1_PIN;
   this->IN2_PIN = motorPins.IN2_PIN;
-  this->ENA_1_PIN = motorPins.ENA_1_PIN;
-  this->ENA_2_PIN = motorPins.ENA_2_PIN;
-  this->IN3_PIN = motorPins.IN3_PIN;
-  this->IN4_PIN = motorPins.IN4_PIN;
+  this->ENA_PIN = motorPins.ENA_PIN;
+
 
   pinMode(IN1_PIN, OUTPUT);
   pinMode(IN2_PIN, OUTPUT);
-  pinMode(ENA_1_PIN, OUTPUT);
-  pinMode(ENA_2_PIN, OUTPUT);
-  pinMode(IN3_PIN, OUTPUT);
-  pinMode(IN4_PIN, OUTPUT);
+  pinMode(ENA_PIN, OUTPUT);
+
 }
 
-void Motor::setSpeed(int speed) {
-  analogWrite(ENA_1_PIN, speed);
-  analogWrite(ENA_2_PIN, speed);
+void Motor::setSpeed(int speed_Pur) {
+  this->currentSpeed = speed_Pur;
+  speed_Pur = map(speed_Pur, 0, 100, 0, 255);
+  analogWrite(ENA_PIN, speed_Pur);
 }
 
-void Motor::setDirection(bool forward) {
-  if (forward) {
+int Motor::GetSpeed() {
+    return currentSpeed;
+}
+
+
+void Motor::setDirection(Motor_Logic Motor_State) {
+  switch (Motor_State)
+  {
+  case MOTOR_FORWARD:
     digitalWrite(IN1_PIN, HIGH);
     digitalWrite(IN2_PIN, LOW);
-    digitalWrite(IN3_PIN, HIGH);
-    digitalWrite(IN4_PIN, LOW);
-  } else {
-    digitalWrite(IN1_PIN, LOW);
+    analogWrite(ENA_PIN, currentSpeed);
+    break;
+  case MOTOR_BACKWARD:
+    digitalWrite(IN1_PIN, LOW); 
     digitalWrite(IN2_PIN, HIGH);
-    digitalWrite(IN3_PIN, LOW);
-    digitalWrite(IN4_PIN, HIGH);
-  }
+    analogWrite(ENA_PIN, currentSpeed);
+    break;
+  case MOTOR_STOP:
+    digitalWrite(IN1_PIN, LOW);
+    digitalWrite(IN2_PIN, LOW);
+    analogWrite(ENA_PIN, 0);
+    break;
+  case MOTOR_COAST:
+    digitalWrite(IN1_PIN, HIGH);
+    digitalWrite(IN2_PIN, HIGH);
+    analogWrite(ENA_PIN, 0);
+    break;
+
+  default:
+    digitalWrite(IN1_PIN, LOW);
+    digitalWrite(IN2_PIN, LOW);
+    analogWrite(ENA_PIN, 0);
+    break;
+}
+
 }
 
 void Motor::stop() {
   digitalWrite(IN1_PIN, LOW);
   digitalWrite(IN2_PIN, LOW);
-  digitalWrite(IN3_PIN, LOW);
-  digitalWrite(IN4_PIN, LOW);
+  analogWrite(ENA_PIN, 0);
 }
