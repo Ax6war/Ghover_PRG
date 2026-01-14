@@ -1,17 +1,20 @@
 #include "Ghover.h"
 
-Ghover::Ghover(MotorPins motorPins, Radar radar, Receiver receiver) : motor(motorPins), radar(radar), receiver(receiver) {}
+Ghover::Ghover(MotorPins motorPinsLeft, MotorPins motorPinsRight, Radar radar, Receiver receiver) : motorLeft(motorPinsLeft), motorRight(motorPinsRight), radar(radar), receiver(receiver) {}
 
 void Ghover::setSpeed(int speed) {
-    motor.setSpeed(speed);
+    motorLeft.setSpeed(speed);
+    motorRight.setSpeed(speed);
 }
 
 void Ghover::setDirection(bool forward) {
-    motor.setDirection(forward);
+    motorLeft.setDirection(forward);
+    motorRight.setDirection(forward);
 }
 
 void Ghover::stop() {
-    motor.stop();
+    motorLeft.stop();
+    motorRight.stop();
 }
 
 void Ghover::activateRadar() {

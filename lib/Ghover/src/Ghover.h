@@ -11,12 +11,14 @@
 
 class Ghover {
 private:
-    MotorPins motorPins;
-    Motor motor;
+    MotorPins motorPinsLeft;
+    MotorPins motorPinsRight;
+    Motor motorLeft;
+    Motor motorRight;
     Radar radar;
     Receiver receiver;
 public:
-    Ghover(MotorPins motorPins, Radar radar, Receiver receiver);
+    Ghover(MotorPins motorPinsLeft, MotorPins motorPinsRight, Radar radar, Receiver receiver);
     void setSpeed(int speed);
     void setDirection(bool forward);
     void stop();
